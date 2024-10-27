@@ -42,7 +42,17 @@ public class Person {
      * @return nothing */
     public void setFirstName(String firstName) {this.firstName = firstName;}
     /** Setter method to change the value of lastName.
-     * @param lastName is a Stirng type of input value.
+     * @param lastName is a String type of input value.
      * @return nothing */
     public void setLastName(String lastName) {this.lastName = lastName;}
+
+    /**
+     * <h3>Make a customize String</h3>
+     * We want to change the application of <b>toString</b> method to print information <b>the way i want</b>.
+     * @return String type that is a sentence include the firstName and lastName of person.
+     */
+    @Override
+    public String toString() {
+        return "PersonInformation{" + " firstName= " + firstName + ", lastName= " + lastName + " }";
+    }
 }
