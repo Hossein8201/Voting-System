@@ -13,5 +13,16 @@ public class Person {
     private String firstName;
     /** <b>lastName</b> is a String type. */
     private String lastName;
+    /**
+     * <h3>Constructor method of Persons</h3>
+     * This method creates an object of Person class and initial it.
+     * @param firstName is a String type of input Value.
+     * @param lastName is a String type of input value.
+     * @return nothing
+     */
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
 }
