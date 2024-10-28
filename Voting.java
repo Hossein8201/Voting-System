@@ -65,4 +65,19 @@ public class Voting {
      * @return nothing
      */
     public void createChoices(String choice) {choices.put(choice,null);}
+    /**
+     * <h3>Voting method for not anonymous mode</h3>
+     * This method for the mode where voting <b>is not anonymous</b> and the input parameters of this method includes the voter and his chosen options.
+     * @param voter is an object of Person class that participated in voting.
+     * @param voterChoices is an ArrayList of chosen options of voting.
+     * @return nothing
+     */
+    public void vote(Person voter, ArrayList<String> voterChoices) {}
+    /**
+     * <h3>Voting method for anonymous mode</h3>
+     * This method for the mode where voting <b>is anonymous</b> and the input parameter of this method is person who participated in voting.
+     * @param person is an object of Person class that participated in voting.
+     * @return nothing
+     */
+    public void vote(Person person){}
 }
