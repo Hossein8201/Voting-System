@@ -1,6 +1,6 @@
 # Voting System Project
 
-**Name:** Hosein Tatar  
+**Name:** Hossein Tatar  
 **Student ID:** 40133014
 
 ## Introduction
