@@ -7,4 +7,14 @@
  * @since 2024-10-28
  */
 public class Vote {
+    /*
+    First we define the fields and constructor as follows:
+    */
+    /** <b>voter</b> is an object of Person class.<p>
+     * <b>note:</b> we don't need to change the value of that, Thus we define it <i>final</i>. */
+    private final Person voter;
+    /** <b>date</b> is a String type.<p>
+     * <b>note:</b> we don't need to change the value of that, Thus we define it <i>final</i>. */
+    private final String date;
+
 }
