@@ -20,4 +20,20 @@ public class VotingSystem {
     public VotingSystem() {
         this.votingList = new ArrayList<Voting>();
     }
+    /**
+     * <h3>Create a new voting</h3>
+     * This method creates a new voting and append the values to it.
+     * @param question is a String type of input value.
+     * @param isAnonymous is a boolean type that show us the status of visibility.
+     * @param type is an int and the mode of how many times a person can vote.
+     * @param choices is an ArrayList of String types that show the voting options.
+     * @return nothing
+     */
+    public void createVoting(String question, boolean isAnonymous, int type, ArrayList<String> choices) {
+        Voting voting = new Voting(type, question, isAnonymous);
+        for (String choice : choices) {
+            voting.createChoices(choice);
+        }
+        votingList.add(voting);
+    }
 }
