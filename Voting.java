@@ -36,8 +36,8 @@ public class Voting {
         this.type = type;
         this.question = question;
         this.isAnonymous = isAnonymous;
-        this.choices = new HashMap<String, HashSet<Vote>>();
-        this.voters = new ArrayList<Person>();
+        this.choices = new HashMap<>();
+        this.voters = new ArrayList<>();
     }
     /*
     Next we need to use getter and setter to apply the changes for some private variables.
@@ -56,8 +56,7 @@ public class Voting {
      * @return is an ArrayList of String type member.
      */
     public ArrayList<String> getChoices() {
-        ArrayList<String> choicesOfVoting = new ArrayList<>(choices.keySet());
-        return choicesOfVoting;
+        return new ArrayList<>(choices.keySet());
     }
     /**
      * <h3>Add a new voting option</h3>
@@ -65,7 +64,7 @@ public class Voting {
      * @param choice is a String type of input value.
      * @return nothing
      */
-    public void createChoices(String choice) {choices.putIfAbsent(choice,new HashSet<Vote>());}
+    public void createChoices(String choice) {choices.putIfAbsent(choice,new HashSet<>());}
     /**
      * <h3>Voting method for not anonymous mode</h3>
      * This method for the mode where voting <b>is not anonymous</b> and the input parameters of this method includes the voter and his chosen options.
@@ -79,14 +78,14 @@ public class Voting {
             if (type == 1) {        // The voter able to vote multiple options.
                 for (String choice : voterChoices) {
                     if (choices.containsKey(choice)) {      // Check the existing of voting option
-                        choices.get(choice).add(new vote(voter, LocalTime.now().toString()));       // Create a new vote to add on choices HashMap
+                        choices.get(choice).add(new Vote(voter, LocalTime.now().toString()));       // Create a new vote to add on choices HashMap
                     }
                 }
             }
             else if (voterChoices.size() == 1) {        // The voter must vote just one option and he did it
                 String choice = voterChoices.get(0);
                 if (choices.containsKey(choice)) {      // Check the existing of voting option
-                    choices.get(choice).add(new vote(voter, LocalTime.now().toString()));       // Create a new vote and add on choices HashMap
+                    choices.get(choice).add(new Vote(voter, LocalTime.now().toString()));       // Create a new vote and add on choices HashMap
                 }
             }
             else System.out.println("In this voting, Voter can't vote to multiple choices");
@@ -108,7 +107,7 @@ public class Voting {
                 // We must choose a random voting option.
                 Random rand = new Random();
                 int choice = rand.nextInt(choicesOfVoting.size());
-                choices.get(choicesOfVoting.get(choice)).add(new vote(person, LocalTime.now().toString()));     // Create a new vote and add on choices
+                choices.get(choicesOfVoting.get(choice)).add(new Vote(person, LocalTime.now().toString()));     // Create a new vote and add on choices
             }
         }
     }

@@ -18,9 +18,7 @@ public class VotingSystem {
      * This method creates an object of VotingSystem class and initialized that, We dont need to input.
      * @return nothing
      */
-    public VotingSystem() {
-        this.votingList = new ArrayList<Voting>();
-    }
+    public VotingSystem() { this.votingList = new ArrayList<>();}
     /**
      * <h3>Create a new voting</h3>
      * This method creates a new voting and append the values to it.
