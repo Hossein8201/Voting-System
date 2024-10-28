@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-
+import java.util.*;
 /**
  * <h1>Voting properties</h1>
  * In this class, We define many options and types for voting.
@@ -30,11 +29,14 @@ public class Voting {
      * @param type is an int and show us the mode of voting.
      * @param question is a String type.
      * @param isAnonymous is a boolean type and tell us the status of visibility.
+     * @return nothing
      */
     public Voting(int type, String question, boolean isAnonymous) {
         this.type = type;
         this.question = question;
         this.isAnonymous = isAnonymous;
+        this.choices = new HashMap<String, HashSet<Vote>>();
+        this.voters = new ArrayList<Person>();
     }
     /*
     Next we need to use getter and setter to apply the changes for some private variables.
@@ -47,4 +49,20 @@ public class Voting {
      * @param question is input variable that show us the new question of voting.
      * @return nothing */
     public void setQuestion(String question) {this.question = question;}
+    /**
+     * <h3>Get the choices of voting</h3>
+     * This method create an ArrayList of choices of voting options from the keys of HashMap.
+     * @return is an ArrayList of String type member.
+     */
+    public ArrayList<String> getChoices() {
+        ArrayList<String> choicesOfVoting = new ArrayList<>(choices.keySet());
+        return choicesOfVoting;
+    }
+    /**
+     * <h3>Add a new voting option</h3>
+     * This method receives a string in its input parameter and add it to the voting options.
+     * @param choice is a String type of input value.
+     * @return nothing
+     */
+    public void createChoices(String choice) {choices.put(choice,null);}
 }
