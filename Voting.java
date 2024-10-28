@@ -22,4 +22,16 @@ public class Voting {
     private boolean isAnonymous;
     /** <b>voters</b> is an ArrayList of Person class objects that show us People who participated in voting. */
     private ArrayList<Person> voters;
+    /**
+     * <h3>Constructor of voting class</h3>
+     * This method creates an object of voting class and initialized that with the given values.
+     * @param type is an int and show us the mode of voting.
+     * @param question is a String type.
+     * @param isAnonymous is a boolean type and tell us the status of visibility.
+     */
+    public Voting(int type, String question, boolean isAnonymous) {
+        this.type = type;
+        this.question = question;
+        this.isAnonymous = isAnonymous;
+    }
 }
