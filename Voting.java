@@ -105,4 +105,17 @@ public class Voting {
             }
         }
     }
+    /**
+     * <h3>Override of Equals method</h3>
+     * This method check the voting together to be sure no voting <b>don't created twice</b>.
+     * @param o is an object.
+     * @return is a boolean type that show us the vote is repetitive or not.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Voting voting = (Voting) o;
+        return type == voting.type && isAnonymous == voting.isAnonymous && Objects.equals(question, voting.question) && Objects.equals(choices, voting.choices) && Objects.equals(voters, voting.voters);
+    }
 }
