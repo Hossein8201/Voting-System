@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.*;
 /**
  * <h1>Voting properties</h1>
@@ -64,7 +65,7 @@ public class Voting {
      * @param choice is a String type of input value.
      * @return nothing
      */
-    public void createChoices(String choice) {choices.put(choice,null);}
+    public void createChoices(String choice) {choices.putIfAbsent(choice,new HashSet<Vote>());}
     /**
      * <h3>Voting method for not anonymous mode</h3>
      * This method for the mode where voting <b>is not anonymous</b> and the input parameters of this method includes the voter and his chosen options.
@@ -72,7 +73,26 @@ public class Voting {
      * @param voterChoices is an ArrayList of chosen options of voting.
      * @return nothing
      */
-    public void vote(Person voter, ArrayList<String> voterChoices) {}
+    public void vote(Person voter, ArrayList<String> voterChoices) {
+        if (!voters.contains(voter)) {      // Check if voter don't attempted until now, He can vote.
+            voters.add(voter);
+            if (type == 1) {        // The voter able to vote multiple options.
+                for (String choice : voterChoices) {
+                    if (choices.containsKey(choice)) {      // Check the existing of voting option
+                        choices.get(choice).add(new vote(voter, LocalTime.now().toString()));       // Create a new vote to add on choices HashMap
+                    }
+                }
+            }
+            else if (voterChoices.size() == 1) {        // The voter must vote just one option and he did it
+                String choice = voterChoices.get(0);
+                if (choices.containsKey(choice)) {      // Check the existing of voting option
+                    choices.get(choice).add(new vote(voter, LocalTime.now().toString()));       // Create a new vote and add on choices HashMap
+                }
+            }
+            else System.out.println("In this voting, Voter can't vote to multiple choices");
+        }
+        else System.out.println("This person already voted : " + voter.toString());
+    }
     /**
      * <h3>Voting method for anonymous mode</h3>
      * This method for the mode where voting <b>is anonymous</b> and the input parameter of this method is person who participated in voting.<p>
@@ -80,7 +100,18 @@ public class Voting {
      * @param person is an object of Person class that participated in voting.
      * @return nothing
      */
-    public void vote(Person person){}
+    public void vote(Person person){
+        if (!voters.contains(person)) {     // Check if voter don't attempted until now, He can vote.
+            if (!choices.keySet().isEmpty()) {      // Check we have voting options to choose
+                voters.add(person);
+                ArrayList<String> choicesOfVoting = new ArrayList<>(choices.keySet());
+                // We must choose a random voting option.
+                Random rand = new Random();
+                int choice = rand.nextInt(choicesOfVoting.size());
+                choices.get(choicesOfVoting.get(choice)).add(new vote(person, LocalTime.now().toString()));     // Create a new vote and add on choices
+            }
+        }
+    }
     /**
      * <h3>Print the result of voting</h3>
      * This method prints the result of voting, including voting options and the number of votes for each option.
@@ -88,7 +119,7 @@ public class Voting {
      */
     public void printResults() {
         for (String choice : choices.keySet()) {
-            System.out.println(choice + " : " + choices.get(choice).size());
+            System.out.println(choice + " : " + choices.get(choice).size() + " Votes");
         }
     }
     /**
@@ -97,11 +128,14 @@ public class Voting {
      * @return nothing
      */
     public void printVoters() {
-        if (isAnonymous)    return;     // Check the condition of isAnonymous was not 1.
+        if (isAnonymous) {      // Check the condition of isAnonymous was not 1.
+            System.out.println("Anonymous mode voting, Thus we can't access to voters");
+            return;
+        }
         for (String choice : choices.keySet()) {
             System.out.println(choice + " : Persons who voting to this choice includes:");
             for (Vote vote : choices.get(choice)) {
-                System.out.print(vote.getVoter() + " ");
+                System.out.println("---> " + vote.getVoter().toString());       // Print the information of voter
             }
         }
     }
