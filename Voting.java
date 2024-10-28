@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * <h1>Voting properties</h1>
  * In this class, We define many options and types for voting.
@@ -34,4 +36,15 @@ public class Voting {
         this.question = question;
         this.isAnonymous = isAnonymous;
     }
+    /*
+    Next we need to use getter and setter to apply the changes for some private variables.
+    In here, We need to define that just for question field.
+    */
+    /** Getter method to get the value of question parameter.
+     * @return String type that is question of voting. */
+    public String getQuestion() {return question;}
+    /** Setter method to change the value of question.
+     * @param question is input variable that show us the new question of voting.
+     * @return nothing */
+    public void setQuestion(String question) {this.question = question;}
 }
