@@ -70,4 +70,43 @@ public class VotingSystem {
         System.out.println("The question of voting is : "+ votingList.get(index).getQuestion() + " and it choices: ");
         System.out.println(votingList.get(index).getChoices());
     }
+    /**
+     * <h3>Vote process not anonymous</h3>
+     * This method handle the vote process for <b>not anonymous voting</b>.
+     * @param index is an int type, the argument of voting.
+     * @param voter is an object of Person type.
+     * @param voterChoices is an ArrayList of String types that are voting options.
+     * @return nothing
+     */
+    public void vote(int index, Person voter, ArrayList<String> voterChoices) { votingList.get(index).vote(voter, voterChoices);}
+    /**
+     * <h3>Vote process anonymous</h3>
+     * This method handle the vote process for <b>anonymous voting</b>.
+     * @param index is an int type, the argument of voting.
+     * @param voter is an object of Person type.
+     * @return nothing
+     */
+    public void vote(int index, Person voter) { votingList.get(index).vote(voter);}
+    /**
+     * <h3>Override of Equals method</h3>
+     * This method check the object of voting system together.
+     * @param o is an object.
+     * @return is a boolean type.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VotingSystem that = (VotingSystem) o;
+        return Objects.equals(votingList, that.votingList);
+    }
+    /**
+     * <h3>Override of hashcode method </h3>
+     * This method transform the fields to hash codes to make the <b>accessibility faster</b>.
+     * @return is an int type that is hash code of the fields.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(votingList);
+    }
 }
