@@ -2,6 +2,7 @@ import java.util.*;
 /**
  * <h1>Handling the voting process</h1>
  * This class is responsible for managing all changes and processes of voting.
+ * <p>
  * @author Hossein Tatar - 40133014
  * @version 1.0
  * @since 2024-10-28
@@ -42,7 +43,15 @@ public class VotingSystem {
      * @param index is an int type that is argument
      * @return is an object of Voting class that argument refer to.
      */
-    public Voting getVoting(int index) {return votingList.get(index);}
+    public Voting getVoting(int index) {
+        if (index >= 0 && index < votingList.size()) {
+            return votingList.get(index);
+        }
+        else {
+            System.out.println("Invalid index of voting in voting list");
+            return null;
+        }
+    }
     /** Getter method to get the value of votingList.
      * @return is an ArrayList that every member are an object of Voting class. */
     public ArrayList<Voting> getVotingList() {return votingList;}
@@ -52,14 +61,22 @@ public class VotingSystem {
      * @param index is an int value that show us what argument must print.
      * @return nothing
      */
-    public void printResults(int index) { votingList.get(index).printResults();}
+    public void printResults(int index) {
+        if (index >= 0 && index < votingList.size())
+            votingList.get(index).printResults();
+        else System.out.println("Invalid index of voting in voting list");
+    }
     /**
      * <h3>Print the list of voters</h3>
      * This method prints the list of voters for voting with given argument.
      * @param index is an int value that show us what argument must print its voters.
      * @return nothing
      */
-    public void printVoters(int index) { votingList.get(index).printVoters();}
+    public void printVoters(int index) {
+        if (index >= 0 && index < votingList.size())
+            votingList.get(index).printVoters();
+        else System.out.println("Invalid index of voting in voting list");
+    }
     /**
      * <h3>Print the information of voting</h3>
      * This method prints the question and the options of each voting.
@@ -67,8 +84,11 @@ public class VotingSystem {
      * @return nothing
      */
     public void printVoting(int index) {
-        System.out.println("The question of voting is : "+ votingList.get(index).getQuestion() + " and it choices: ");
-        System.out.println(votingList.get(index).getChoices());
+        if (index >= 0 && index < votingList.size()) {
+            System.out.println("The question of voting is : "+ votingList.get(index).getQuestion() + " and it choices: ");
+            System.out.println(votingList.get(index).getChoices());
+        }
+        else System.out.println("Invalid index of voting in voting list");
     }
     /**
      * <h3>Vote process not anonymous</h3>
@@ -78,7 +98,11 @@ public class VotingSystem {
      * @param voterChoices is an ArrayList of String types that are voting options.
      * @return nothing
      */
-    public void vote(int index, Person voter, ArrayList<String> voterChoices) { votingList.get(index).vote(voter, voterChoices);}
+    public void vote(int index, Person voter, ArrayList<String> voterChoices) {
+        if (index >= 0 && index < votingList.size())
+            votingList.get(index).vote(voter, voterChoices);
+        else System.out.println("Invalid index of voting in voting list");
+    }
     /**
      * <h3>Vote process anonymous</h3>
      * This method handle the vote process for <b>anonymous voting</b>.
@@ -86,7 +110,11 @@ public class VotingSystem {
      * @param voter is an object of Person type.
      * @return nothing
      */
-    public void vote(int index, Person voter) { votingList.get(index).vote(voter);}
+    public void vote(int index, Person voter) {
+        if (index >= 0 && index < votingList.size())
+            votingList.get(index).vote(voter);
+        else System.out.println("Invalid index of voting in voting list");
+    }
     /**
      * <h3>Override of Equals method</h3>
      * This method check the object of voting system together.
