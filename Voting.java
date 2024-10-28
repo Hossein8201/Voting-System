@@ -73,7 +73,7 @@ public class Voting {
      * @return nothing
      */
     public void vote(Person voter, ArrayList<String> voterChoices) {
-        if (!voters.contains(voter)) {      // Check if voter don't attempted until now, He can vote.
+        if (!voters.contains(voter) && !isAnonymous) {      // Check if voter don't attempted until now, He can vote.
             voters.add(voter);
             if (type == 1) {        // The voter able to vote multiple options.
                 for (String choice : voterChoices) {
@@ -90,6 +90,7 @@ public class Voting {
             }
             else System.out.println("In this voting, Voter can't vote to multiple choices");
         }
+        else if (isAnonymous) System.out.println("In this voting, voter can't vote not anonymously");
         else System.out.println("This person already voted : " + voter.toString());
     }
     /**
@@ -100,7 +101,7 @@ public class Voting {
      * @return nothing
      */
     public void vote(Person person){
-        if (!voters.contains(person)) {     // Check if voter don't attempted until now, He can vote.
+        if (!voters.contains(person) && isAnonymous) {     // Check if voter don't attempted until now, He can vote.
             if (!choices.keySet().isEmpty()) {      // Check we have voting options to choose
                 voters.add(person);
                 ArrayList<String> choicesOfVoting = new ArrayList<>(choices.keySet());
@@ -110,6 +111,8 @@ public class Voting {
                 choices.get(choicesOfVoting.get(choice)).add(new Vote(person, LocalTime.now().toString()));     // Create a new vote and add on choices
             }
         }
+        else if (!isAnonymous) System.out.println("In this voting, Voter can't vote anonymously");
+        else System.out.println("This person already voted : " + person.toString());
     }
     /**
      * <h3>Print the result of voting</h3>
@@ -135,7 +138,7 @@ public class Voting {
             System.out.println(choice + " : Persons who voting to this choice includes:");
             for (Vote vote : choices.get(choice)) {
                 System.out.println("---> " + vote.getVoter().toString());       // Print the information of voter
-            }
+            } if (choices.get(choice).size() == 0) System.out.println("---> No voters found");
         }
     }
     /**
