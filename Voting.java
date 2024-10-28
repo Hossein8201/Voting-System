@@ -75,9 +75,34 @@ public class Voting {
     public void vote(Person voter, ArrayList<String> voterChoices) {}
     /**
      * <h3>Voting method for anonymous mode</h3>
-     * This method for the mode where voting <b>is anonymous</b> and the input parameter of this method is person who participated in voting.
+     * This method for the mode where voting <b>is anonymous</b> and the input parameter of this method is person who participated in voting.<p>
+     * <b>note:</b> A random option should be generated and selected.
      * @param person is an object of Person class that participated in voting.
      * @return nothing
      */
     public void vote(Person person){}
+    /**
+     * <h3>Print the result of voting</h3>
+     * This method prints the result of voting, including voting options and the number of votes for each option.
+     * @return nothing
+     */
+    public void printResults() {
+        for (String choice : choices.keySet()) {
+            System.out.println(choice + " : " + choices.get(choice).size());
+        }
+    }
+    /**
+     * <h3>Print the voters</h3>
+     * If the voting was not anonymous, the voting options and all the people who voted for that option will be printed.
+     * @return nothing
+     */
+    public void printVoters() {
+        if (isAnonymous)    return;     // Check the condition of isAnonymous was not 1.
+        for (String choice : choices.keySet()) {
+            System.out.println(choice + " : Persons who voting to this choice includes:");
+            for (Vote vote : choices.get(choice)) {
+                System.out.print(vote.getVoter() + " ");
+            }
+        }
+    }
 }
