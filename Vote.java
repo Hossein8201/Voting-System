@@ -27,5 +27,13 @@ public class Vote {
         this.voter = voter;
         this.date = date;
     }
-
+     /*
+    Next we need to use getter methods to access the value of private variables.
+    */
+    /** Getter method to get the value of voter parameter.
+     * @return an object of Person class that is information of person. */
+    public Person getVoter() {return voter;}
+    /** Getter method to get the value of date parameter.
+     * @return a String type that is date of vote. */
+    public String getDate() {return date;}
 }
