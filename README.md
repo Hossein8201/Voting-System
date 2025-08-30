@@ -1,8 +1,5 @@
 # Voting System Project
 
-**Name:** Hossein Tatar  
-**Student ID:** 40133014
-
 ## Introduction
 This project implements a voting system in Java. The system supports creating various voting sessions with multiple options, anonymous or public voting, and displaying results.
 
